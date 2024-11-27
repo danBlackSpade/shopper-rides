@@ -80,21 +80,11 @@ export default function HistoryPage() {
     // }
     setError('');
 
-    console.log('@@@selectedDriverId', selectedDriverId);
 
     try {
       const response = await getCustomerRides(userId, selectedDriverId).then((res) => {
         return res
       })
-
-//       Ao aplicar o filtro, deve exibir a lista das viagens realizadas, com:
-// ○ data e hora da viagem.
-// ○ nome do motorista.
-// ○ origem.
-// ○ destino.
-// ○ distância.
-// ○ tempo.
-// ○ valor.
 
       const filteredRides = response.rides.map((ride: IRide) => ({
         id: ride.id,
@@ -112,17 +102,12 @@ export default function HistoryPage() {
         value: ride.value,
       }));
 
-      // const filteredRides =
-      //   driverFilter === 'all'
-      //     ? response.data
-      //     : response.data.rides.filter((ride: IRide) => ride.driver.name === driverFilter);
-
-
       setRides(filteredRides);
     } catch (err) {
       // console.log(err);
       if (err instanceof Error) {
         setError(err.message);
+        setRides([]);
       }
       // setError(err.message);
     }
