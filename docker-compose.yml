@@ -10,7 +10,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - GOOGLE_MAPS_API_KEY=${GOOGLE_API_KEY}
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
       - MONGO_URI=mongodb://mongo:27017/shopper-rides
       - FRONTEND_URL=http://localhost
     depends_on:
@@ -21,12 +21,15 @@ services:
   frontend:
     build:
       context: ./shopper_frontend_next  # Ajuste o caminho para o diretório onde o Dockerfile do frontend está
+      args:
+        NEXT_PUBLIC_GOOGLE_API_KEY: ${GOOGLE_API_KEY}
       dockerfile: Dockerfile
     container_name: shopper_frontend
     ports:
       - "80:3000"
     environment:
       - NEXT_PUBLIC_API_URL=http://backend:8080/api  
+      - NEXT_PUBLIC_GOOGLE_API_KEY=${GOOGLE_API_KEY}
     depends_on:
       - backend
     networks:
