@@ -1,6 +1,0 @@
-# [submodule "shopper_backend"]
-# 	path = shopper_backend
-# 	url = https://github.com/danBlackSpade/shopper_backend.git
-# [submodule "shopper_frontend_next"]
-# 	path = shopper_frontend_next
-# 	url = https://github.com/danBlackSpade/shopper_frontend_next.git
